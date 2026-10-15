@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-mood="calm">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Sheeza Tariq — Designer, Strategist & Product Builder</title>
+  <meta name="description"
+    content="Sheeza Tariq is a digital designer and business developer studying Digital Forensics & Cyber Security, blending visual art, AI automation and code." />
+  <meta name="theme-color" content="#fbf9f6" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sheeza Tariq — Designer, Strategist & Builder" />
+  <meta property="og:description" content="Giving feelings a shape through design, art and a little bit of code." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,100;1,9..144,300..500,100&family=Manrope:wght@400..700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- Apply saved theme + mood before first paint to avoid a flash.
+         Storage keys must match js/lib/storage.js -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var theme = null;
+      var mood = null;
+      try {
+        theme = localStorage.getItem('st-theme');
+        mood = localStorage.getItem('st-mood');
+      } catch (e) { }
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.dataset.theme = theme;
+      if (mood) root.dataset.mood = mood;
+    })();
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <!-- Everything below is rendered from js/content.js -->
+  <header class="site-header" data-header data-slot="header"></header>
+  <main data-slot="main"></main>
+  <footer class="site-footer" data-slot="footer"></footer>
+
+  <noscript>
+    <div class="noscript">
+      <h1>Sheeza Tariq</h1>
+      <p>This portfolio needs JavaScript to display. You can reach me at
+        <a href="mailto:sheezatariq6013@gmail.com">sheezatariq6013@gmail.com</a>
+        or <a href="assets/sheeza-tariq-cv.pdf">download my CV</a>.
+      </p>
+    </div>
+  </noscript>
+</body>
+
+</html>

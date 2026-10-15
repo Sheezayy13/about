@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Design tokens
+   Change the look of the whole site from here: colours, moods, type, spacing.
+   ========================================================================== */
+
+/* Registered so mood/theme changes can fade the accent colour smoothly */
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #4b5fc4;
+}
+
+:root {
+  /* Typography */
+  --font-serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.125rem, 1.07rem + 0.25vw, 1.3125rem);
+  --text-xl: clamp(1.375rem, 1.25rem + 0.6vw, 1.75rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --text-3xl: clamp(2.5rem, 1.6rem + 4vw, 5rem);
+  --text-display: clamp(3.25rem, 1.5rem + 8vw, 8.5rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-section: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+  /* Layout */
+  --container: 74rem;
+  --gutter: clamp(1rem, 0.4rem + 3vw, 2.75rem);
+  --header-height: 4.5rem;
+
+  /* Shape */
+  --radius-sm: 0.625rem;
+  --radius-md: 1.125rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.2s;
+  --duration: 0.6s;
+  --duration-slow: 0.9s;
+}
+
+/* --------------------------------------------------------------------------
+   Themes (data-theme is always set on <html> by the boot script)
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+  --bg: #fbf9f6;
+  --surface: #ffffff;
+  --surface-soft: #f3f0eb;
+  --text: #1f1d22;
+  --text-muted: #5f5a65;
+  --line: #e8e3dc;
+  --line-strong: #d3cdc5;
+  --shadow-soft: 0 1px 2px rgb(31 29 34 / 0.04), 0 18px 40px -20px rgb(31 29 34 / 0.18);
+
+  /* How the hero aura mixes: watercolour on paper */
+  --aura-blend: multiply;
+  --aura-alpha: 0.9;
+  --aura-lightness: 1; /* multiplier applied to the mood colours */
+  --grain-opacity: 0.22;
+  --glow-opacity: 1; /* contact section glow */
+  --art-filter: none; /* project cover art */
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #131216;
+  --surface: #1b1a1f;
+  --surface-soft: #1f1e24;
+  --text: #efecf2;
+  --text-muted: #a7a2ad;
+  --line: #2a2830;
+  --line-strong: #3b3842;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 40px -20px rgb(0 0 0 / 0.6);
+
+  /* …and soft light in the dark: same palette, deeper tones */
+  --aura-blend: screen;
+  --aura-alpha: 0.4;
+  --aura-lightness: 0.72;
+  --grain-opacity: 0.12;
+  --glow-opacity: 0.4;
+  --art-filter: saturate(1.5) brightness(0.8);
+}
+
+/* --------------------------------------------------------------------------
+   Moods — pastel palettes. Add a mood here + in js/content.js (moods).
+   --m1…--m3 must be hex: they're read by js/features/aura.js.
+   --accent-deep is the readable text accent for the light theme (≥ 4.5:1 contrast).
+   -------------------------------------------------------------------------- */
+
+:root,
+[data-mood='calm'] {
+  --m1: #b7c7ff;
+  --m2: #bfe6dc;
+  --m3: #dcd2ff;
+  --accent-deep: #4b5fc4;
+}
+
+[data-mood='joy'] {
+  --m1: #ffcfa6;
+  --m2: #ffe49a;
+  --m3: #ffc0cc;
+  --accent-deep: #a8501a;
+}
+
+[data-mood='dreamy'] {
+  --m1: #d9c4ff;
+  --m2: #ffc9e6;
+  --m3: #c3e1ff;
+  --accent-deep: #8250c4;
+}
+
+[data-mood='bold'] {
+  --m1: #ffaab2;
+  --m2: #ffc79c;
+  --m3: #f2b3dc;
+  --accent-deep: #c0304f;
+}
+
+/* Text accent: deep tone on light backgrounds, the pastel itself on dark */
+:root {
+  --accent: var(--accent-deep);
+  transition: --accent var(--duration-slow) var(--ease-out);
+}
+
+[data-theme='dark'] {
+  --accent: var(--m1);
+}

@@ -1,0 +1,209 @@
+/* Site header: wordmark, navigation, theme toggle, mobile menu */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    backdrop-filter var(--duration) var(--ease-out);
+}
+
+.site-header.is-scrolled,
+.site-header.is-menu-open {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  height: var(--header-height);
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  font-variation-settings: 'SOFT' 100;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.wordmark__dot {
+  color: var(--accent);
+}
+
+/* Navigation ------------------------------------------------------------- */
+
+.site-nav__list {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+}
+
+.site-nav__link {
+  position: relative;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current] {
+  color: var(--text);
+}
+
+.site-nav__link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -0.55rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%) scale(0);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.site-nav__link[aria-current]::after {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Actions ---------------------------------------------------------------- */
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  transition:
+    border-color var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.icon-button:hover {
+  border-color: var(--text);
+}
+
+.icon-button .icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.icon--sun,
+[data-theme='dark'] .icon--moon {
+  display: none;
+}
+
+[data-theme='dark'] .icon--sun {
+  display: block;
+}
+
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 2.5rem;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.menu-button__lines {
+  position: relative;
+  width: 0.9rem;
+  height: 0.5rem;
+  border-block: 1.5px solid currentColor;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.menu-button[aria-expanded='true'] .menu-button__lines {
+  border-bottom-color: transparent;
+  transform: translateY(0.12rem);
+}
+
+/* Mobile: nav becomes a dropdown panel ----------------------------------- */
+
+@media (max-width: 47.99rem) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    inset-inline: var(--gutter);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .is-menu-open .site-nav {
+    display: block;
+    animation: menu-in var(--duration) var(--ease-out);
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .site-nav__link {
+    display: block;
+    padding-block: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .site-nav__list li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .site-nav__link::after {
+    left: auto;
+    right: 0;
+    bottom: 50%;
+    transform: translateY(50%) scale(0);
+  }
+
+  .site-nav__link[aria-current]::after {
+    transform: translateY(50%) scale(1.5);
+  }
+}
+
+@media (min-width: 48rem) {
+  .menu-button {
+    display: none;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
