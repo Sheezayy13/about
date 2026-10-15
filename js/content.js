@@ -14,7 +14,7 @@ const content = {
   person: {
     name: 'Sheeza Tariq',
     firstName: 'Sheeza',
-    roles: ['designer', 'strategist', 'product builder'],
+    roles: ['designer', 'strategist', 'builder'],
     location: 'Lahore, Pakistan',
     email: 'sheezatariq6013@gmail.com',
     phone: { display: '+92 316 3227626', href: 'tel:+923163227626' },
@@ -30,7 +30,7 @@ const content = {
   ],
 
   hero: {
-    greeting: "Hiieeee!, I'm",
+    greeting: "Hiieeee! I'm",
     tagline: 'I give feelings a *shape* — through design, art and a little bit of code.', // rich
     primaryAction: { label: 'See my work', href: '#work' },
     moodPrompt: 'Set the mood',
@@ -54,7 +54,7 @@ const content = {
         text: "I pitch ideas, run ad campaigns and manage outreach — and I've helped win international clients, including a long-term retained one.",
       },
       {
-        title: 'Product Builder',
+        title: 'Builder',
         text: 'I build with Python, JavaScript and AI, from a sign language interpreter to a security analyzer for websites.',
       },
     ],
